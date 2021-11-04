@@ -1,8 +1,8 @@
 #!/bin/bash
 cd "$(dirname "$0")"
 echo ----KOMPILACJA----
-echo Kompiluję program projektu numer 1
-gcc -std=c11 -pedantic -Wall -Wextra -Werror -fstack-protector-strong -g project1.c -o project1
+echo Kompiluję program projektu
+gcc -std=c11 -pedantic -Wall -Wextra -Werror -fstack-protector-strong -g project.c -o project
 
 if [ "$?" -ne "0" ]; then
    echo !!! BŁĄD KOMPILACJI !!!;
@@ -14,10 +14,10 @@ echo ----TESTOWANIE----
 for file in tests/in/*
 do
     echo -"$(basename $file)"-
-    command=$(valgrind -q ./project1 <$file | diff - tests/out/$(basename $file))
+    command=$(valgrind -q ./project <$file | diff - tests/out/$(basename $file))
     if [[ -z $command ]]; then
         printf "Pomyślnie ukończono próbę "$(basename $file)"."
-        time(./project1 <$file >tmp)
+        time(./project <$file >tmp)
         echo
     else
         echo !-!-! Błąd !-!-!
@@ -25,14 +25,14 @@ do
         echo Spodziewany wynik: 
         cat tests/out/$(basename $file)
         echo Otrzymany wynik:
-        valgrind -q ./project1 <$file
+        valgrind -q ./project <$file
         break
     fi
 done
 
 echo ----CZYSZCZENIE----
-echo Usuwam plik wykonywalny projektu numer 1
-rm project1
+echo Usuwam plik wykonywalny projektu
+rm project
 rm tmp
 printf "\n"
 echo ----ZAKOŃCZENIE PROCESU TESTOWANIA----

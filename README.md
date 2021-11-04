@@ -2,7 +2,7 @@
 
 ## Sposób uruchamiania
 
-1. Umieść swój program w pliku project1.c
+1. Umieść swój program w pliku project.c
 2. Dane wejściowe "in" umieść w folderze '/tests/in'
 3. Dane wyjściowe "out" umieść w folderze '/tests/out'
 5. W folderze głównym uruchom komendę 'bash testuj.sh'
