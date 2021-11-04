@@ -12,6 +12,7 @@
 1. Pliki "in" i odpowiadające im "out" muszą mieć tę samą nazwę
 2. Zwrócić uwagę na komendy podane do kompilacji i weryfikacji dynamicznej pamięci ('gcc' oraz 'valgrind'), gdyż mogą być zmieniane w zależności od projektu
 3. Archiwalne testy do zadań będą przechowywane w folderze 'archive'
+4. Z powodu wczesnej wersji i braku doświadczenia w bashu, program może zawierać rażące błędy
 
 ## Kontrybucja
 
