@@ -2,7 +2,7 @@
 cd "$(dirname "$0")"
 echo ----KOMPILACJA----
 echo Kompiluję program projektu
-gcc -std=c11 -pedantic -Wall -Wextra -Werror -fstack-protector-strong -g project.c -o project
+gcc -std=c17 -pedantic -Wall -Wextra -Wformat-security -Wduplicated-cond -Wfloat-equal -Wshadow -Wconversion -Wjump-misses-init -Wlogical-not-parentheses -Wnull-dereference -Wvla -Werror -fstack-protector-strong -fsanitize=undefined -fno-sanitize-recover -g -fno-omit-frame-pointer -O1 project.c -o project
 
 if [ "$?" -ne "0" ]; then
    echo !!! BŁĄD KOMPILACJI !!!;
@@ -25,7 +25,7 @@ do
         echo Spodziewany wynik: 
         cat tests/out/$(basename $file)
         echo Otrzymany wynik:
-        valgrind -q ./project <$file
+        valgrind --leak-check=full -q --error-exitcode=1 ./project <$file
         break
     fi
 done
