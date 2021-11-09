@@ -14,7 +14,7 @@ echo ----TESTOWANIE----
 for file in tests/in/*
 do
     echo -"$(basename $file)"-
-    command=$(valgrind -q ./project <$file | diff - tests/out/$(basename $file))
+    command=$(valgrind --leak-check=full -q --error-exitcode=1 ./project <$file | diff - tests/out/$(basename $file))
     if [[ -z $command ]]; then
         printf "Pomyślnie ukończono próbę "$(basename $file)"."
         time(./project <$file >tmp)
